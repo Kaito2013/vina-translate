@@ -8,6 +8,7 @@ APP_BUNDLE="${BUILD_DIR}/${APP_NAME}.app"
 CONTENTS_DIR="${APP_BUNDLE}/Contents"
 MACOS_DIR="${CONTENTS_DIR}/MacOS"
 RESOURCES_DIR="${CONTENTS_DIR}/Resources"
+ICONSET_DIR="${BUILD_DIR}/AppIcon.iconset"
 
 echo "==> Đang biên dịch ${APP_NAME} (Release mode)..."
 cd "${PROJECT_DIR}"
@@ -17,6 +18,10 @@ BIN_PATH="$(swift build -c release --show-bin-path)/${APP_NAME}"
 
 rm -rf "${APP_BUNDLE}"
 mkdir -p "${MACOS_DIR}" "${RESOURCES_DIR}"
+
+echo "==> Đang tạo bộ Icon chuẩn Retina macOS (AppIcon.icns)..."
+swift "${PROJECT_DIR}/scripts/generate-icon.swift" "${ICONSET_DIR}"
+iconutil -c icns "${ICONSET_DIR}" -o "${RESOURCES_DIR}/AppIcon.icns"
 
 cp "${BIN_PATH}" "${MACOS_DIR}/${APP_NAME}"
 chmod +x "${MACOS_DIR}/${APP_NAME}"
@@ -30,6 +35,10 @@ cat > "${CONTENTS_DIR}/Info.plist" <<EOF
     <string>vi</string>
     <key>CFBundleExecutable</key>
     <string>${APP_NAME}</string>
+    <key>CFBundleIconFile</key>
+    <string>AppIcon</string>
+    <key>CFBundleIconName</key>
+    <string>AppIcon</string>
     <key>CFBundleIdentifier</key>
     <string>com.hoaiminh.vinatranslate</string>
     <key>CFBundleInfoDictionaryVersion</key>
@@ -55,10 +64,12 @@ cat > "${CONTENTS_DIR}/Info.plist" <<EOF
 EOF
 
 codesign --force --deep --sign - "${APP_BUNDLE}"
+touch "${APP_BUNDLE}"
 
 if [ -w "/Applications" ]; then
     rm -rf "/Applications/${APP_NAME}.app"
     cp -R "${APP_BUNDLE}" "/Applications/${APP_NAME}.app"
+    touch "/Applications/${APP_NAME}.app"
     echo "==> Đã cài đặt thành công vào: /Applications/${APP_NAME}.app"
 fi
 
