@@ -1,0 +1,168 @@
+client:
+  name: basic
+  file-system: device-agnostic
+tools: {}
+targets:
+  "PackageStructure": ["<PackageStructure>"]
+  "VinaTranslate-x86_64-apple-macosx15.0-debug.exe": ["<VinaTranslate-x86_64-apple-macosx15.0-debug.exe>"]
+  "VinaTranslate-x86_64-apple-macosx15.0-debug.module": ["<VinaTranslate-x86_64-apple-macosx15.0-debug.module>"]
+  "VinaTranslateCore-x86_64-apple-macosx15.0-debug.module": ["<VinaTranslateCore-x86_64-apple-macosx15.0-debug.module>"]
+  "VinaTranslateCoreTests-x86_64-apple-macosx15.0-debug.module": ["<VinaTranslateCoreTests-x86_64-apple-macosx15.0-debug.module>"]
+  "VinaTranslatePackageTests-x86_64-apple-macosx15.0-debug.module": ["<VinaTranslatePackageTests-x86_64-apple-macosx15.0-debug.module>"]
+  "VinaTranslatePackageTests-x86_64-apple-macosx15.0-debug.test": ["<VinaTranslatePackageTests-x86_64-apple-macosx15.0-debug.test>"]
+  "main": ["<VinaTranslate-x86_64-apple-macosx15.0-debug.exe>","<VinaTranslate-x86_64-apple-macosx15.0-debug.module>","<VinaTranslateCore-x86_64-apple-macosx15.0-debug.module>"]
+  "test": ["<VinaTranslate-x86_64-apple-macosx15.0-debug.exe>","<VinaTranslate-x86_64-apple-macosx15.0-debug.module>","<VinaTranslateCore-x86_64-apple-macosx15.0-debug.module>","<VinaTranslateCoreTests-x86_64-apple-macosx15.0-debug.module>","<VinaTranslatePackageTests-x86_64-apple-macosx15.0-debug.test>"]
+default: "main"
+nodes:
+  "/Users/hoaiminh/vina-translate/Sources/VinaTranslate/":
+    is-directory-structure: true
+    content-exclusion-patterns: [".git",".build"]
+  "/Users/hoaiminh/vina-translate/Sources/VinaTranslateCore/":
+    is-directory-structure: true
+    content-exclusion-patterns: [".git",".build"]
+  "/Users/hoaiminh/vina-translate/Tests/VinaTranslateCoreTests/":
+    is-directory-structure: true
+    content-exclusion-patterns: [".git",".build"]
+  "/Users/hoaiminh/vina-translate/.build/x86_64-apple-macosx/debug/VinaTranslate":
+    is-mutated: true
+commands:
+  "/Users/hoaiminh/vina-translate/.build/x86_64-apple-macosx/debug/VinaTranslate-entitlement.plist":
+    tool: write-auxiliary-file
+    inputs: ["<entitlement-plist>","<com.apple.security.get-task-allow>"]
+    outputs: ["/Users/hoaiminh/vina-translate/.build/x86_64-apple-macosx/debug/VinaTranslate-entitlement.plist"]
+    description: "Write auxiliary file /Users/hoaiminh/vina-translate/.build/x86_64-apple-macosx/debug/VinaTranslate-entitlement.plist"
+
+  "/Users/hoaiminh/vina-translate/.build/x86_64-apple-macosx/debug/VinaTranslate.build/sources":
+    tool: write-auxiliary-file
+    inputs: ["<sources-file-list>","/Users/hoaiminh/vina-translate/Sources/VinaTranslate/VinaTranslateApp.swift"]
+    outputs: ["/Users/hoaiminh/vina-translate/.build/x86_64-apple-macosx/debug/VinaTranslate.build/sources"]
+    description: "Write auxiliary file /Users/hoaiminh/vina-translate/.build/x86_64-apple-macosx/debug/VinaTranslate.build/sources"
+
+  "/Users/hoaiminh/vina-translate/.build/x86_64-apple-macosx/debug/VinaTranslate.product/Objects.LinkFileList":
+    tool: write-auxiliary-file
+    inputs: ["<link-file-list>","/Users/hoaiminh/vina-translate/.build/x86_64-apple-macosx/debug/VinaTranslate.build/VinaTranslateApp.swift.o","/Users/hoaiminh/vina-translate/.build/x86_64-apple-macosx/debug/VinaTranslateCore.build/LanguageDetector.swift.o","/Users/hoaiminh/vina-translate/.build/x86_64-apple-macosx/debug/VinaTranslateCore.build/ParagraphBatcher.swift.o"]
+    outputs: ["/Users/hoaiminh/vina-translate/.build/x86_64-apple-macosx/debug/VinaTranslate.product/Objects.LinkFileList"]
+    description: "Write auxiliary file /Users/hoaiminh/vina-translate/.build/x86_64-apple-macosx/debug/VinaTranslate.product/Objects.LinkFileList"
+
+  "/Users/hoaiminh/vina-translate/.build/x86_64-apple-macosx/debug/VinaTranslateCore.build/sources":
+    tool: write-auxiliary-file
+    inputs: ["<sources-file-list>","/Users/hoaiminh/vina-translate/Sources/VinaTranslateCore/LanguageDetector.swift","/Users/hoaiminh/vina-translate/Sources/VinaTranslateCore/ParagraphBatcher.swift"]
+    outputs: ["/Users/hoaiminh/vina-translate/.build/x86_64-apple-macosx/debug/VinaTranslateCore.build/sources"]
+    description: "Write auxiliary file /Users/hoaiminh/vina-translate/.build/x86_64-apple-macosx/debug/VinaTranslateCore.build/sources"
+
+  "/Users/hoaiminh/vina-translate/.build/x86_64-apple-macosx/debug/VinaTranslateCoreTests.build/sources":
+    tool: write-auxiliary-file
+    inputs: ["<sources-file-list>","/Users/hoaiminh/vina-translate/Tests/VinaTranslateCoreTests/LanguageAndBatchTests.swift"]
+    outputs: ["/Users/hoaiminh/vina-translate/.build/x86_64-apple-macosx/debug/VinaTranslateCoreTests.build/sources"]
+    description: "Write auxiliary file /Users/hoaiminh/vina-translate/.build/x86_64-apple-macosx/debug/VinaTranslateCoreTests.build/sources"
+
+  "/Users/hoaiminh/vina-translate/.build/x86_64-apple-macosx/debug/VinaTranslatePackageTests.build/sources":
+    tool: write-auxiliary-file
+    inputs: ["<sources-file-list>","/Users/hoaiminh/vina-translate/.build/x86_64-apple-macosx/debug/VinaTranslatePackageTests.derived/runner.swift"]
+    outputs: ["/Users/hoaiminh/vina-translate/.build/x86_64-apple-macosx/debug/VinaTranslatePackageTests.build/sources"]
+    description: "Write auxiliary file /Users/hoaiminh/vina-translate/.build/x86_64-apple-macosx/debug/VinaTranslatePackageTests.build/sources"
+
+  "/Users/hoaiminh/vina-translate/.build/x86_64-apple-macosx/debug/VinaTranslatePackageTests.derived/runner.swift":
+    tool: test-entry-point-tool
+    inputs: []
+    outputs: ["/Users/hoaiminh/vina-translate/.build/x86_64-apple-macosx/debug/VinaTranslatePackageTests.derived/runner.swift"]
+
+  "/Users/hoaiminh/vina-translate/.build/x86_64-apple-macosx/debug/VinaTranslatePackageTests.product/Objects.LinkFileList":
+    tool: write-auxiliary-file
+    inputs: ["<link-file-list>","/Users/hoaiminh/vina-translate/.build/x86_64-apple-macosx/debug/VinaTranslateCore.build/LanguageDetector.swift.o","/Users/hoaiminh/vina-translate/.build/x86_64-apple-macosx/debug/VinaTranslateCore.build/ParagraphBatcher.swift.o","/Users/hoaiminh/vina-translate/.build/x86_64-apple-macosx/debug/VinaTranslateCoreTests.build/LanguageAndBatchTests.swift.o","/Users/hoaiminh/vina-translate/.build/x86_64-apple-macosx/debug/VinaTranslatePackageTests.build/runner.swift.o"]
+    outputs: ["/Users/hoaiminh/vina-translate/.build/x86_64-apple-macosx/debug/VinaTranslatePackageTests.product/Objects.LinkFileList"]
+    description: "Write auxiliary file /Users/hoaiminh/vina-translate/.build/x86_64-apple-macosx/debug/VinaTranslatePackageTests.product/Objects.LinkFileList"
+
+  "/Users/hoaiminh/vina-translate/.build/x86_64-apple-macosx/debug/swift-version--58304C5D6DBC2206.txt":
+    tool: write-auxiliary-file
+    inputs: ["<swift-get-version>","/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc"]
+    outputs: ["/Users/hoaiminh/vina-translate/.build/x86_64-apple-macosx/debug/swift-version--58304C5D6DBC2206.txt"]
+    always-out-of-date: "true"
+    description: "Write auxiliary file /Users/hoaiminh/vina-translate/.build/x86_64-apple-macosx/debug/swift-version--58304C5D6DBC2206.txt"
+
+  "<VinaTranslate-x86_64-apple-macosx15.0-debug.exe>":
+    tool: phony
+    inputs: ["<VinaTranslate-x86_64-apple-macosx15.0-debug.exe-CodeSigning>"]
+    outputs: ["<VinaTranslate-x86_64-apple-macosx15.0-debug.exe>"]
+
+  "<VinaTranslate-x86_64-apple-macosx15.0-debug.module>":
+    tool: phony
+    inputs: ["/Users/hoaiminh/vina-translate/.build/x86_64-apple-macosx/debug/VinaTranslate.build/VinaTranslateApp.swift.o","/Users/hoaiminh/vina-translate/.build/x86_64-apple-macosx/debug/Modules/VinaTranslate.swiftmodule"]
+    outputs: ["<VinaTranslate-x86_64-apple-macosx15.0-debug.module>"]
+
+  "<VinaTranslateCore-x86_64-apple-macosx15.0-debug.module>":
+    tool: phony
+    inputs: ["/Users/hoaiminh/vina-translate/.build/x86_64-apple-macosx/debug/VinaTranslateCore.build/LanguageDetector.swift.o","/Users/hoaiminh/vina-translate/.build/x86_64-apple-macosx/debug/VinaTranslateCore.build/ParagraphBatcher.swift.o","/Users/hoaiminh/vina-translate/.build/x86_64-apple-macosx/debug/Modules/VinaTranslateCore.swiftmodule"]
+    outputs: ["<VinaTranslateCore-x86_64-apple-macosx15.0-debug.module>"]
+
+  "<VinaTranslateCoreTests-x86_64-apple-macosx15.0-debug.module>":
+    tool: phony
+    inputs: ["/Users/hoaiminh/vina-translate/.build/x86_64-apple-macosx/debug/VinaTranslateCoreTests.build/LanguageAndBatchTests.swift.o","/Users/hoaiminh/vina-translate/.build/x86_64-apple-macosx/debug/Modules/VinaTranslateCoreTests.swiftmodule"]
+    outputs: ["<VinaTranslateCoreTests-x86_64-apple-macosx15.0-debug.module>"]
+
+  "<VinaTranslatePackageTests-x86_64-apple-macosx15.0-debug.module>":
+    tool: phony
+    inputs: ["/Users/hoaiminh/vina-translate/.build/x86_64-apple-macosx/debug/VinaTranslatePackageTests.build/runner.swift.o","/Users/hoaiminh/vina-translate/.build/x86_64-apple-macosx/debug/Modules/VinaTranslatePackageTests.swiftmodule"]
+    outputs: ["<VinaTranslatePackageTests-x86_64-apple-macosx15.0-debug.module>"]
+
+  "<VinaTranslatePackageTests-x86_64-apple-macosx15.0-debug.test>":
+    tool: phony
+    inputs: ["/Users/hoaiminh/vina-translate/.build/x86_64-apple-macosx/debug/VinaTranslatePackageTests.xctest/Contents/MacOS/VinaTranslatePackageTests"]
+    outputs: ["<VinaTranslatePackageTests-x86_64-apple-macosx15.0-debug.test>"]
+
+  "C.VinaTranslate-x86_64-apple-macosx15.0-debug.exe":
+    tool: shell
+    inputs: ["/Users/hoaiminh/vina-translate/.build/x86_64-apple-macosx/debug/VinaTranslate.build/VinaTranslateApp.swift.o","/Users/hoaiminh/vina-translate/.build/x86_64-apple-macosx/debug/VinaTranslateCore.build/LanguageDetector.swift.o","/Users/hoaiminh/vina-translate/.build/x86_64-apple-macosx/debug/VinaTranslateCore.build/ParagraphBatcher.swift.o","/Users/hoaiminh/vina-translate/.build/x86_64-apple-macosx/debug/VinaTranslate.product/Objects.LinkFileList"]
+    outputs: ["/Users/hoaiminh/vina-translate/.build/x86_64-apple-macosx/debug/VinaTranslate"]
+    description: "Linking ./.build/x86_64-apple-macosx/debug/VinaTranslate"
+    args: ["/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc","-L","/Users/hoaiminh/vina-translate/.build/x86_64-apple-macosx/debug","-o","/Users/hoaiminh/vina-translate/.build/x86_64-apple-macosx/debug/VinaTranslate","-module-name","VinaTranslate","-Xlinker","-no_warn_duplicate_libraries","-emit-executable","-Xlinker","-alias","-Xlinker","_VinaTranslate_main","-Xlinker","_main","-Xlinker","-rpath","-Xlinker","@loader_path","@/Users/hoaiminh/vina-translate/.build/x86_64-apple-macosx/debug/VinaTranslate.product/Objects.LinkFileList","-target","x86_64-apple-macosx15.0","-Xlinker","-add_ast_path","-Xlinker","/Users/hoaiminh/vina-translate/.build/x86_64-apple-macosx/debug/Modules/VinaTranslate.swiftmodule","-Xlinker","-add_ast_path","-Xlinker","/Users/hoaiminh/vina-translate/.build/x86_64-apple-macosx/debug/Modules/VinaTranslateCore.swiftmodule","-sdk","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.5.sdk","-F","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks","-F","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks","-I","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib","-L","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib","-g"]
+
+  "C.VinaTranslate-x86_64-apple-macosx15.0-debug.exe-entitlements":
+    tool: shell
+    inputs: ["/Users/hoaiminh/vina-translate/.build/x86_64-apple-macosx/debug/VinaTranslate","/Users/hoaiminh/vina-translate/.build/x86_64-apple-macosx/debug/VinaTranslate-entitlement.plist"]
+    outputs: ["<VinaTranslate-x86_64-apple-macosx15.0-debug.exe-CodeSigning>"]
+    description: "Applying debug entitlements to ./.build/x86_64-apple-macosx/debug/VinaTranslate"
+    args: ["codesign","--force","--sign","-","--entitlements","/Users/hoaiminh/vina-translate/.build/x86_64-apple-macosx/debug/VinaTranslate-entitlement.plist","/Users/hoaiminh/vina-translate/.build/x86_64-apple-macosx/debug/VinaTranslate"]
+
+  "C.VinaTranslate-x86_64-apple-macosx15.0-debug.module":
+    tool: shell
+    inputs: ["/Users/hoaiminh/vina-translate/Sources/VinaTranslate/VinaTranslateApp.swift","/Users/hoaiminh/vina-translate/.build/x86_64-apple-macosx/debug/swift-version--58304C5D6DBC2206.txt","/Users/hoaiminh/vina-translate/.build/x86_64-apple-macosx/debug/Modules/VinaTranslateCore.swiftmodule","/Users/hoaiminh/vina-translate/.build/x86_64-apple-macosx/debug/VinaTranslate.build/sources"]
+    outputs: ["/Users/hoaiminh/vina-translate/.build/x86_64-apple-macosx/debug/VinaTranslate.build/VinaTranslateApp.swift.o","/Users/hoaiminh/vina-translate/.build/x86_64-apple-macosx/debug/Modules/VinaTranslate.swiftmodule"]
+    description: "Compiling Swift Module 'VinaTranslate' (1 sources)"
+    args: ["/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc","-module-name","VinaTranslate","-emit-dependencies","-emit-module","-emit-module-path","/Users/hoaiminh/vina-translate/.build/x86_64-apple-macosx/debug/Modules/VinaTranslate.swiftmodule","-output-file-map","/Users/hoaiminh/vina-translate/.build/x86_64-apple-macosx/debug/VinaTranslate.build/output-file-map.json","-incremental","-c","@/Users/hoaiminh/vina-translate/.build/x86_64-apple-macosx/debug/VinaTranslate.build/sources","-I","/Users/hoaiminh/vina-translate/.build/x86_64-apple-macosx/debug/Modules","-target","x86_64-apple-macosx15.0","-enable-batch-mode","-index-store-path","/Users/hoaiminh/vina-translate/.build/x86_64-apple-macosx/debug/index/store","-Onone","-enable-testing","-j10","-DSWIFT_PACKAGE","-DDEBUG","-module-cache-path","/Users/hoaiminh/vina-translate/.build/x86_64-apple-macosx/debug/ModuleCache","-parseable-output","-Xfrontend","-entry-point-function-name","-Xfrontend","VinaTranslate_main","-parse-as-library","-swift-version","6","-sdk","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.5.sdk","-F","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks","-F","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks","-I","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib","-L","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib","-g","-Xcc","-isysroot","-Xcc","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.5.sdk","-Xcc","-F","-Xcc","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks","-Xcc","-F","-Xcc","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks","-Xcc","-fPIC","-Xcc","-g","-package-name","vina_translate"]
+
+  "C.VinaTranslateCore-x86_64-apple-macosx15.0-debug.module":
+    tool: shell
+    inputs: ["/Users/hoaiminh/vina-translate/Sources/VinaTranslateCore/LanguageDetector.swift","/Users/hoaiminh/vina-translate/Sources/VinaTranslateCore/ParagraphBatcher.swift","/Users/hoaiminh/vina-translate/.build/x86_64-apple-macosx/debug/swift-version--58304C5D6DBC2206.txt","/Users/hoaiminh/vina-translate/.build/x86_64-apple-macosx/debug/VinaTranslateCore.build/sources"]
+    outputs: ["/Users/hoaiminh/vina-translate/.build/x86_64-apple-macosx/debug/VinaTranslateCore.build/LanguageDetector.swift.o","/Users/hoaiminh/vina-translate/.build/x86_64-apple-macosx/debug/VinaTranslateCore.build/ParagraphBatcher.swift.o","/Users/hoaiminh/vina-translate/.build/x86_64-apple-macosx/debug/Modules/VinaTranslateCore.swiftmodule"]
+    description: "Compiling Swift Module 'VinaTranslateCore' (2 sources)"
+    args: ["/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc","-module-name","VinaTranslateCore","-emit-dependencies","-emit-module","-emit-module-path","/Users/hoaiminh/vina-translate/.build/x86_64-apple-macosx/debug/Modules/VinaTranslateCore.swiftmodule","-output-file-map","/Users/hoaiminh/vina-translate/.build/x86_64-apple-macosx/debug/VinaTranslateCore.build/output-file-map.json","-parse-as-library","-incremental","-c","@/Users/hoaiminh/vina-translate/.build/x86_64-apple-macosx/debug/VinaTranslateCore.build/sources","-I","/Users/hoaiminh/vina-translate/.build/x86_64-apple-macosx/debug/Modules","-target","x86_64-apple-macosx15.0","-enable-batch-mode","-index-store-path","/Users/hoaiminh/vina-translate/.build/x86_64-apple-macosx/debug/index/store","-Onone","-enable-testing","-j10","-DSWIFT_PACKAGE","-DDEBUG","-module-cache-path","/Users/hoaiminh/vina-translate/.build/x86_64-apple-macosx/debug/ModuleCache","-parseable-output","-parse-as-library","-emit-objc-header","-emit-objc-header-path","/Users/hoaiminh/vina-translate/.build/x86_64-apple-macosx/debug/VinaTranslateCore.build/VinaTranslateCore-Swift.h","-swift-version","6","-sdk","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.5.sdk","-F","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks","-F","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks","-I","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib","-L","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib","-g","-Xcc","-isysroot","-Xcc","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.5.sdk","-Xcc","-F","-Xcc","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks","-Xcc","-F","-Xcc","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks","-Xcc","-fPIC","-Xcc","-g","-package-name","vina_translate"]
+
+  "C.VinaTranslateCoreTests-x86_64-apple-macosx15.0-debug.module":
+    tool: shell
+    inputs: ["/Users/hoaiminh/vina-translate/Tests/VinaTranslateCoreTests/LanguageAndBatchTests.swift","/Users/hoaiminh/vina-translate/.build/x86_64-apple-macosx/debug/swift-version--58304C5D6DBC2206.txt","/Users/hoaiminh/vina-translate/.build/x86_64-apple-macosx/debug/Modules/VinaTranslateCore.swiftmodule","/Users/hoaiminh/vina-translate/.build/x86_64-apple-macosx/debug/VinaTranslateCoreTests.build/sources"]
+    outputs: ["/Users/hoaiminh/vina-translate/.build/x86_64-apple-macosx/debug/VinaTranslateCoreTests.build/LanguageAndBatchTests.swift.o","/Users/hoaiminh/vina-translate/.build/x86_64-apple-macosx/debug/Modules/VinaTranslateCoreTests.swiftmodule"]
+    description: "Compiling Swift Module 'VinaTranslateCoreTests' (1 sources)"
+    args: ["/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc","-module-name","VinaTranslateCoreTests","-emit-dependencies","-emit-module","-emit-module-path","/Users/hoaiminh/vina-translate/.build/x86_64-apple-macosx/debug/Modules/VinaTranslateCoreTests.swiftmodule","-output-file-map","/Users/hoaiminh/vina-translate/.build/x86_64-apple-macosx/debug/VinaTranslateCoreTests.build/output-file-map.json","-parse-as-library","-incremental","-c","@/Users/hoaiminh/vina-translate/.build/x86_64-apple-macosx/debug/VinaTranslateCoreTests.build/sources","-I","/Users/hoaiminh/vina-translate/.build/x86_64-apple-macosx/debug/Modules","-target","x86_64-apple-macosx15.0","-enable-batch-mode","-index-store-path","/Users/hoaiminh/vina-translate/.build/x86_64-apple-macosx/debug/index/store","-Onone","-enable-testing","-Xfrontend","-enable-cross-import-overlays","-j10","-DSWIFT_PACKAGE","-DDEBUG","-module-cache-path","/Users/hoaiminh/vina-translate/.build/x86_64-apple-macosx/debug/ModuleCache","-parseable-output","-parse-as-library","-swift-version","6","-sdk","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.5.sdk","-F","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks","-F","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks","-I","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib","-L","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib","-g","-Xcc","-isysroot","-Xcc","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.5.sdk","-Xcc","-F","-Xcc","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks","-Xcc","-F","-Xcc","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks","-Xcc","-fPIC","-Xcc","-g","-package-name","vina_translate"]
+
+  "C.VinaTranslatePackageTests-x86_64-apple-macosx15.0-debug.module":
+    tool: shell
+    inputs: ["/Users/hoaiminh/vina-translate/.build/x86_64-apple-macosx/debug/VinaTranslatePackageTests.derived/runner.swift","/Users/hoaiminh/vina-translate/.build/x86_64-apple-macosx/debug/swift-version--58304C5D6DBC2206.txt","/Users/hoaiminh/vina-translate/.build/x86_64-apple-macosx/debug/Modules/VinaTranslateCoreTests.swiftmodule","/Users/hoaiminh/vina-translate/.build/x86_64-apple-macosx/debug/VinaTranslatePackageTests.build/sources"]
+    outputs: ["/Users/hoaiminh/vina-translate/.build/x86_64-apple-macosx/debug/VinaTranslatePackageTests.build/runner.swift.o","/Users/hoaiminh/vina-translate/.build/x86_64-apple-macosx/debug/Modules/VinaTranslatePackageTests.swiftmodule"]
+    description: "Compiling Swift Module 'VinaTranslatePackageTests' (1 sources)"
+    args: ["/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc","-module-name","VinaTranslatePackageTests","-emit-dependencies","-emit-module","-emit-module-path","/Users/hoaiminh/vina-translate/.build/x86_64-apple-macosx/debug/Modules/VinaTranslatePackageTests.swiftmodule","-output-file-map","/Users/hoaiminh/vina-translate/.build/x86_64-apple-macosx/debug/VinaTranslatePackageTests.build/output-file-map.json","-parse-as-library","-incremental","-c","@/Users/hoaiminh/vina-translate/.build/x86_64-apple-macosx/debug/VinaTranslatePackageTests.build/sources","-I","/Users/hoaiminh/vina-translate/.build/x86_64-apple-macosx/debug/Modules","-target","x86_64-apple-macosx15.0","-enable-batch-mode","-index-store-path","/Users/hoaiminh/vina-translate/.build/x86_64-apple-macosx/debug/index/store","-Onone","-enable-testing","-Xfrontend","-enable-cross-import-overlays","-j10","-DSWIFT_PACKAGE","-DDEBUG","-module-cache-path","/Users/hoaiminh/vina-translate/.build/x86_64-apple-macosx/debug/ModuleCache","-parseable-output","-parse-as-library","-emit-objc-header","-emit-objc-header-path","/Users/hoaiminh/vina-translate/.build/x86_64-apple-macosx/debug/VinaTranslatePackageTests.build/VinaTranslatePackageTests-Swift.h","-sdk","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.5.sdk","-F","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks","-F","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks","-I","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib","-L","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib","-g","-Xcc","-isysroot","-Xcc","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.5.sdk","-Xcc","-F","-Xcc","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks","-Xcc","-F","-Xcc","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks","-Xcc","-fPIC","-Xcc","-g","-package-name","vina_translate"]
+
+  "C.VinaTranslatePackageTests-x86_64-apple-macosx15.0-debug.test":
+    tool: shell
+    inputs: ["/Users/hoaiminh/vina-translate/.build/x86_64-apple-macosx/debug/VinaTranslateCore.build/LanguageDetector.swift.o","/Users/hoaiminh/vina-translate/.build/x86_64-apple-macosx/debug/VinaTranslateCore.build/ParagraphBatcher.swift.o","/Users/hoaiminh/vina-translate/.build/x86_64-apple-macosx/debug/VinaTranslateCoreTests.build/LanguageAndBatchTests.swift.o","/Users/hoaiminh/vina-translate/.build/x86_64-apple-macosx/debug/VinaTranslatePackageTests.build/runner.swift.o","/Users/hoaiminh/vina-translate/.build/x86_64-apple-macosx/debug/VinaTranslatePackageTests.product/Objects.LinkFileList"]
+    outputs: ["/Users/hoaiminh/vina-translate/.build/x86_64-apple-macosx/debug/VinaTranslatePackageTests.xctest/Contents/MacOS/VinaTranslatePackageTests"]
+    description: "Linking ./.build/x86_64-apple-macosx/debug/VinaTranslatePackageTests.xctest/Contents/MacOS/VinaTranslatePackageTests"
+    args: ["/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc","-L","/Users/hoaiminh/vina-translate/.build/x86_64-apple-macosx/debug","-o","/Users/hoaiminh/vina-translate/.build/x86_64-apple-macosx/debug/VinaTranslatePackageTests.xctest/Contents/MacOS/VinaTranslatePackageTests","-module-name","VinaTranslatePackageTests","-Xlinker","-no_warn_duplicate_libraries","-Xlinker","-bundle","-Xlinker","-rpath","-Xlinker","@loader_path/../../../","@/Users/hoaiminh/vina-translate/.build/x86_64-apple-macosx/debug/VinaTranslatePackageTests.product/Objects.LinkFileList","-target","x86_64-apple-macosx15.0","-Xlinker","-add_ast_path","-Xlinker","/Users/hoaiminh/vina-translate/.build/x86_64-apple-macosx/debug/Modules/VinaTranslateCore.swiftmodule","-Xlinker","-add_ast_path","-Xlinker","/Users/hoaiminh/vina-translate/.build/x86_64-apple-macosx/debug/Modules/VinaTranslateCoreTests.swiftmodule","-Xlinker","-add_ast_path","-Xlinker","/Users/hoaiminh/vina-translate/.build/x86_64-apple-macosx/debug/Modules/VinaTranslatePackageTests.swiftmodule","-sdk","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.5.sdk","-F","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks","-F","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks","-I","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib","-L","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib","-g"]
+
+  "PackageStructure":
+    tool: package-structure-tool
+    inputs: ["/Users/hoaiminh/vina-translate/Sources/VinaTranslate/","/Users/hoaiminh/vina-translate/Sources/VinaTranslateCore/","/Users/hoaiminh/vina-translate/Tests/VinaTranslateCoreTests/","/Users/hoaiminh/vina-translate/Package.swift","/Users/hoaiminh/vina-translate/Package.resolved"]
+    outputs: ["<PackageStructure>"]
+    description: "Planning build"
+    allow-missing-inputs: true
+
