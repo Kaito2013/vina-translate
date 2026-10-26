@@ -1,4 +1,0 @@
-module VinaTranslateCore {
-    header "/Users/hoaiminh/vina-translate/.build/x86_64-apple-macosx/debug/VinaTranslateCore.build/VinaTranslateCore-Swift.h"
-    requires objc
-}
