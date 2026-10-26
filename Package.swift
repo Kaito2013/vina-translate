@@ -28,5 +28,6 @@ let package = Package(
             name: "VinaTranslateCoreTests",
             dependencies: ["VinaTranslateCore"]
         )
-    ]
+    ],
+    swiftLanguageModes: [.v5]
 )
